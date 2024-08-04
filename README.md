@@ -1,5 +1,13 @@
 # jax-flash-attn
 
+> [!WARNING]  
+> These bindings are very experimental. If you use them, double check that the
+> outputs are reasonable. The current tests only verify this for the most simple
+> setups.
+>
+> Only a subset of the options are a supported, in particular GQA/MQA haven't
+> been tested.
+
 This repo contains bindings for [FlashAttention2](https://github.com/Dao-AILab/flash-attention)
 in JAX. There are two versions for these bindings, a C++ version
 `jax_flash_attn` and a Rust version `jflash_attn`.
