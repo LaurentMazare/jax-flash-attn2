@@ -14,7 +14,6 @@ from jax.lib import xla_client
 from jax.interpreters import mlir
 from jax.interpreters.mlir import ir
 from jaxlib.hlo_helpers import custom_call
-from jax.experimental.maps import xmap
 
 _run_mha_fwd = core.Primitive("run_mha_fwd")
 _run_mha_fwd.multiple_results = True
@@ -284,6 +283,8 @@ jax.config.update("experimental_xmap_spmd_lowering_manual", True)
 
 
 def xmap_run_mha(q, k, v, is_causal, softmax_scale, softcap, device_count):
+    from jax.experimental.maps import xmap
+
     q_reshaped = q.reshape(device_count, q.shape[0] // device_count, *q.shape[1:])
     k_reshaped = k.reshape(device_count, k.shape[0] // device_count, *k.shape[1:])
     v_reshaped = v.reshape(device_count, v.shape[0] // device_count, *v.shape[1:])
