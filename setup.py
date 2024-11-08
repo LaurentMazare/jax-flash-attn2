@@ -2,7 +2,7 @@ from skbuild import setup  # This line replaces 'from setuptools import setup'
 
 setup(
     name="jax_flash_attn",
-    version="0.0.2",
+    version="0.0.3",
     description="Flash attention CUDA kernels for jax",
     author="",
     packages=["jax_flash_attn"],
