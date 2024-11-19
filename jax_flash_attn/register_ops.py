@@ -67,12 +67,12 @@ def run_mha(q, k, v, is_causal=False, softmax_scale=1.0, softcap=0.0):
     return output
 
 
-jax.config.update("experimental_xmap_spmd_lowering", True)
-jax.config.update("experimental_xmap_spmd_lowering_manual", True)
-
 
 def xmap_run_mha(q, k, v, is_causal, softmax_scale, softcap, device_count):
     from jax.experimental.maps import xmap
+
+    jax.config.update("experimental_xmap_spmd_lowering", True)
+    jax.config.update("experimental_xmap_spmd_lowering_manual", True)
 
     q_reshaped = q.reshape(device_count, q.shape[0] // device_count, *q.shape[1:])
     k_reshaped = k.reshape(device_count, k.shape[0] // device_count, *k.shape[1:])
