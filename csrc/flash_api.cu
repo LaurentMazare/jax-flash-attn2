@@ -125,16 +125,16 @@ void run_mha_bwd_j(cudaStream_t stream, void **buffers,
 	params.do_row_stride = params.o_row_stride;
 	params.do_head_stride = params.o_head_stride;
 	params.dq_row_stride = params.q_row_stride;
-	params.dk_row_stride = params.k_row_stride;
-	params.dv_row_stride = params.v_row_stride;
+	params.dk_row_stride = params.q_row_stride;
+	params.dv_row_stride = params.q_row_stride;
 	params.dq_head_stride = params.q_head_stride;
-	params.dk_head_stride = params.k_head_stride;
-	params.dv_head_stride = params.v_head_stride;
+	params.dk_head_stride = params.q_head_stride;
+	params.dv_head_stride = params.q_head_stride;
 
 	params.do_batch_stride = params.o_batch_stride;
 	params.dq_batch_stride = params.q_batch_stride;
-	params.dk_batch_stride = params.k_batch_stride;
-	params.dv_batch_stride = params.v_batch_stride;
+	params.dk_batch_stride = params.q_batch_stride;
+	params.dv_batch_stride = params.q_batch_stride;
 
   run_mha_bwd(params, stream, false);
 }
