@@ -271,8 +271,8 @@ def _run_mha_bwd_abstract(
     dq_accum_shape = b_sz, seqlen_q_rounded, num_heads, head_size_rounded
     return (
         ShapedArray(q.shape, q_dtype, named_shape=q.named_shape),  # grad q
-        ShapedArray(k.shape, k_dtype, named_shape=k.named_shape),  # grad k
-        ShapedArray(v.shape, v_dtype, named_shape=v.named_shape),  # grad v
+        ShapedArray(q.shape, k_dtype, named_shape=k.named_shape),  # grad k
+        ShapedArray(q.shape, v_dtype, named_shape=v.named_shape),  # grad v
         ShapedArray(softmax_d_shape, jnp.float32),
         ShapedArray(dq_accum_shape, jnp.float32),
     )
